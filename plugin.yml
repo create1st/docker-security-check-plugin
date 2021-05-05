@@ -1,0 +1,11 @@
+name: Docker security check
+description: Performs docker image validation
+author: https://github.com/create1st
+requirements:
+  - docker
+  - docker-compose
+configuration:
+  properties:
+    image-name:
+      type: string
+  additionalProperties: false

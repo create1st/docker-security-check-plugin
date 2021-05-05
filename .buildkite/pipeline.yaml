@@ -1,0 +1,21 @@
+env:
+  BUILDKITE_CLEAN_CHECKOUT: true
+steps:
+
+  - label: ':buildkite: :electric_plug: :shell: Scripts validation'
+    plugins:
+      - shellcheck#v1.1.2:
+          files:
+            - scripts/*.sh
+
+  - label: ':buildkite: :electric_plug: :repolinter: Lint'
+    plugins:
+      docker-compose#v3.7.0:
+        config: docker-compose.yml
+        run: lint
+
+  - label: ':buildkite: :electric_plug: Tests'
+    plugins:
+      docker-compose#v3.7.0:
+        config: docker-compose.yml
+        run: tests
